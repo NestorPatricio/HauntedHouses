@@ -68,7 +68,7 @@ class Profile(AbstractBaseUser, PermissionsMixin):
 class Inmueble(models.Model):
     description = models.TextField(null = False, blank = False)
     builded_sqm = models.IntegerField(null = False, blank = False)
-    total_sqm = models.IntegerField(null = False, blank = False)
+    terrain_sqm = models.IntegerField(null = False, blank = False)
     parkings = models.IntegerField(default = 0)
     rooms = models.IntegerField(default = 0)
     bathrooms = models.IntegerField(default = 0)
