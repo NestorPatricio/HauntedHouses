@@ -1,4 +1,9 @@
 from django.contrib import admin
+
+# Register your models here.
+
+""" Info del otr poryecto:
+
 from django.contrib.auth.admin import UserAdmin
 
 from rent_page.models import CustomUser, Property, Request, Contract
@@ -32,3 +37,4 @@ admin.site.register(CustomUser, UserAdminConfig)
 admin.site.register(Property)
 admin.site.register(Request)
 admin.site.register(Contract)
+"""

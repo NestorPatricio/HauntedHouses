@@ -1,3 +1,3 @@
 # Inmobiliaria
-🏠An app to manage properties for rent, made in Python-Django.
+🏠A web-app to manage properties for rent, made in Python-Django.
 #

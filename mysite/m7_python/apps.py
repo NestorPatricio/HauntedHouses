@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class RentPageConfig(AppConfig):
+class M7PythonConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'rent_page'
+    name = 'm7_python'
