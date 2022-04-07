@@ -39,6 +39,9 @@ class Region(models.Model):
     region = models.CharField(max_length = 50)
 
 
+# Conversado con el relator Carlos García:
+# Solicito realizar el modelo Profile usando 'AbstractBaseUser' como superclase, para practicar.
+# Soy conciente de que no es la forma más fácil y que deberé de adaptar algunos comandos a cómo lo tienen mis compañeros.
 class Profile(AbstractBaseUser, PermissionsMixin):
     rut = models.CharField(max_length=10, unique = True)
     first_name = models.CharField(max_length = 50, null = False, blank = False)
@@ -50,7 +53,7 @@ class Profile(AbstractBaseUser, PermissionsMixin):
     tipo_user = models.OneToOneField(
         'm7_python.TipoUser',
         on_delete = models.CASCADE,
-        null = False, blank = False,
+        null = True, blank = True,
         related_name = 'profile')
     is_active = models.BooleanField(default = False)
     is_staff = models.BooleanField(default = False)
@@ -66,6 +69,7 @@ class Profile(AbstractBaseUser, PermissionsMixin):
 
 
 class Inmueble(models.Model):
+    name = models.CharField(max_length = 100, default = '')
     description = models.TextField(null = False, blank = False)
     builded_sqm = models.IntegerField(null = False, blank = False)
     terrain_sqm = models.IntegerField(null = False, blank = False)

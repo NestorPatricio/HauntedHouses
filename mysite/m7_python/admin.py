@@ -1,8 +1,15 @@
 from django.contrib import admin
 
-# Register your models here.
+from m7_python.models import Comuna, Region, TipoInmueble, Inmueble, TipoUser, Profile
 
-""" Info del otr poryecto:
+admin.site.register(Comuna)
+admin.site.register(Region)
+admin.site.register(TipoInmueble)
+admin.site.register(Inmueble)
+admin.site.register(Profile)
+admin.site.register(TipoUser)
+
+""" Info del otro poryecto:
 
 from django.contrib.auth.admin import UserAdmin
 
@@ -31,10 +38,4 @@ class UserAdminConfig(UserAdmin):
         ('Permissions', {'classes': ('wide',),
             'fields': ('is_active', 'is_staff')}),
     )
-    
-
-admin.site.register(CustomUser, UserAdminConfig)
-admin.site.register(Property)
-admin.site.register(Request)
-admin.site.register(Contract)
 """
