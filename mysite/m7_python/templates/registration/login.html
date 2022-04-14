@@ -1,0 +1,14 @@
+{% extends 'm7_python/base.html' %}
+
+{% block main %}
+<main class="container my-3">
+    <div class="row text-center">
+        <h1 class="mb-4 col-12">Inicia tu sesión</h1>
+        <form action="" method="post" class="mx-auto col-8 col-sm-6 col-md-5 col-lg-4 col-xl-3 fs-3">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-haunted fs-4 my-2">Inicia</button>
+        </form>
+    </div>
+</main>
+{% endblock main %}

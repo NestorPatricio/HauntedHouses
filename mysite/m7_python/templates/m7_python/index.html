@@ -1,0 +1,10 @@
+{% extends 'm7_python/base.html' %}
+
+{% block main %}
+<main class="container my-3">
+{% if user.is_authenticated %}
+    <h1 class="mx-2">Bienvenido a tu sesión {{ user.first_name }}</h1>
+{% endif %}
+    <h1 class="mx-2">Las casas más <b>embrujadas</b>, los departamentos más <b>creepy</b></h1>
+</main>
+{% endblock main %}

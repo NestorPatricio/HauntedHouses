@@ -1,0 +1,44 @@
+body {
+    font-family: 'Oswald', sans-serif;
+    background-color: #A08993;
+}
+
+.main-img {
+    width: 15vw;
+}
+
+.aretun {
+    font-family: 'Creepster', cursive;
+    color: #1A0E18;
+}
+
+.btn-haunted {
+    background-color: #1A0E18;
+    color: #A08993;
+}
+
+.btn-haunted:hover {
+    background-color: #1A0E18;
+    color: #D2D1CC;
+}
+
+header {
+    background-color: #D2D1CC;
+}
+
+nav {
+    background-color: #1A0E18;
+    font-family: 'Creepster', cursive;
+    font-weight: 300;
+}
+
+footer {
+    font-family: 'Creepster', cursive;
+    background-color: #1A0E18;
+    color: #A08993;
+}
+
+.links {
+    text-decoration: none;
+    color: #A08993;
+}

@@ -26,17 +26,29 @@ class CustomAccountManager(BaseUserManager):
 class TipoUser(models.Model):
     user_type = models.CharField(max_length = 20, null = False, blank = False)
 
+    def __str__(self):
+        return str(self.user_type)
+
 
 class TipoInmueble(models.Model):
     property_type = models.CharField(max_length = 15, null = False, blank = False)
+
+    def __str__(self):
+        return str(self.property_type)
 
 
 class Comuna(models.Model):
     municipality = models.CharField(max_length = 50)
 
+    def __str__(self):
+        return str(self.municipality)
+
 
 class Region(models.Model):
     region = models.CharField(max_length = 50)
+
+    def __str__(self):
+        return str(self.region)
 
 
 # Conversado con el relator Carlos García:
@@ -50,7 +62,7 @@ class Profile(AbstractBaseUser, PermissionsMixin):
     phone_number = models.CharField(max_length = 9, null = False, blank = False)
     email = models.EmailField(max_length = 50, null = False, blank = False, unique = False)
     picture = models.URLField(default = 'Sin imagen disponible')
-    tipo_user = models.OneToOneField(
+    tipo_user = models.ForeignKey(
         'm7_python.TipoUser',
         on_delete = models.CASCADE,
         null = True, blank = True,
