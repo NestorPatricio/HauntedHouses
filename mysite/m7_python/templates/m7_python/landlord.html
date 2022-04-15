@@ -1,3 +1,29 @@
+{% if checker %}
+
 <div class="my-3">
+    {% for property in properties %}
+    <div class="my-3">
+        <div class="p-2 shadow-lg rounded message">
+            <h3 class="">{{ property.name }}</h3>
+            <h4 class="">{{ property.description }}</h4>
+        </div>
+        <div class="col-12 col-md-12 mx-auto">
+            <a role="submit" class="btn btn-haunted-small m-2 fs-5" href="#">Editar</a>
+            <a role="submit" class="btn btn-haunted-small m-2 fs-5" href="#">Eliminar</a>
+        </div>
+    </div>
+    
+    {% endfor %}
+</div>
+
+{% else %}
+
+<div class="text-center">
     <h1>Aún no tienes propiedades inscritas.</h1>
+</div>
+
+{% endif %}
+
+<div class="my-3 text-center">
+    <a role="submit" class="btn btn-haunted my-2 fs-4" href="{% url 'm7_python:agrégala' %}">Agrega una propiedad</a>
 </div>

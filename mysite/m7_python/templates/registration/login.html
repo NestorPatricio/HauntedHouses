@@ -2,6 +2,16 @@
 
 {% block main %}
 <main class="container my-3">
+    
+{% if messages %}
+    {% for message in messages %}
+    <div class="alert message alert-dismissible fade show display-6 text-center" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" style="color: white;" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+{% endif %}
+
     <div class="row text-center">
         <h1 class="mb-4 col-12">Inicia tu sesión</h1>
         <form action="" method="post" class="mx-auto col-8 col-sm-6 col-md-5 col-lg-4 col-xl-3 fs-3">

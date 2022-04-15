@@ -2,12 +2,14 @@
 
 {% block main %}
 <main class="container my-3">
-    <div class="row text-center">
-        <h1 class="mb-4 col-12">Completa tu información</h1>
-        <form action="" method="post" class="mx-auto col-8 col-sm-6 col-md-5 col-lg-4 col-xl-3 fs-3">
+    <div class="row">
+        <h1 class="mb-4 col-12 text-center">Completa tu información</h1>
+        <form action="" method="post" class="mx-auto col-12 col-md-10 fs-4">
             {% csrf_token %}
             {{ formulario.as_p }}
-            <button class="btn btn-haunted fs-4 my-2">Enviar</button>
+            <div class="text-center">
+                <button class="btn btn-haunted my-2 fs-4">Enviar</button>
+            </div>
         </form>
     </div>
 </main>

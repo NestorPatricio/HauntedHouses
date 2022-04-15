@@ -1,16 +1,25 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
-from m7_python.models import Profile, TipoUser
-from m7_python.forms import UserForm, CompletingUserForm, UserUpdateForm
+from m7_python.models import Profile, TipoUser, Inmueble, TipoInmueble, Comuna, Region
+from m7_python.forms import UserForm, CompletingUserForm, UserUpdateForm, InmuebleForm
 
 def index(request):
     return render(request, './m7_python/index.html', {})
 
 @login_required
 def users_intro(request):
-    return render(request, './m7_python/dashboard.html', {})
+    usuario = request.user
+    sapo = True
+    if usuario.tipo_user_id == 1:
+        inmuebles = Inmueble.objects.filter(user = usuario)
+    else:
+        inmuebles = Inmueble.objects.all()
+    if len(inmuebles) == 0:
+        sapo = False
+    return render(request, './m7_python/dashboard.html', {'properties': inmuebles, 'checker': sapo})
 
 def register(request):
     if request.method == 'POST':
@@ -39,6 +48,7 @@ def complement(request):
             user.phone_number = form.cleaned_data['phone_number']
             user.picture = form.cleaned_data['picture']
             user.save()
+            messages.success(request, f'El usuario {user.first_name} ha sido creado exitosamente.')
             return HttpResponseRedirect('/login')
     else:
         form = CompletingUserForm()
@@ -50,8 +60,49 @@ def profile(request):
         form = UserUpdateForm(request.POST, instance = request.user)
         if form.is_valid():
             form.save()
+            messages.success(request, f'Los datos del usuario{form.cleaned_data["first_name"]} han sido actualizados.')
             return HttpResponseRedirect('/dashboard')
     else:
         # 'instance=' permite que los campos no estén vacíos al momento de actualizar.
         form = UserUpdateForm(instance = request.user)
     return render(request, './m7_python/update_profile.html', {'formulario': form})
+
+@login_required
+def add_property(request):
+    if request.method == 'POST':
+        form = InmuebleForm(request.POST)
+        if form.is_valid():
+            user = request.user
+            name = form.cleaned_data['name']
+            description = form.cleaned_data['description']
+            builded_sqm = form.cleaned_data['builded_sqm']
+            terrain_sqm = form.cleaned_data['terrain_sqm']
+            parkings = form.cleaned_data['parkings']
+            rooms = form.cleaned_data['rooms']
+            bathrooms = form.cleaned_data['bathrooms']
+            adress = form.cleaned_data['adress']
+            rent_price = form.cleaned_data['rent_price']
+            tipo_inmueble = TipoInmueble.objects.get(pk = int(form.cleaned_data['tipo_inmueble']))
+            comuna = Comuna.objects.get(pk = int(form.cleaned_data['comuna']))
+            region = Region.objects.get(pk = int(form.cleaned_data['region']))
+
+            Inmueble.objects.create(
+                user = user,
+                name = name,
+                description = description,
+                builded_sqm = builded_sqm,
+                terrain_sqm = terrain_sqm,
+                parkings = parkings,
+                rooms = rooms,
+                bathrooms = bathrooms,
+                adress = adress,
+                rent_price = rent_price,
+                tipo_inmueble = tipo_inmueble,
+                comuna = comuna,
+                region = region,
+            )
+            messages.success(request, 'El inmueble ha sido agregado exitosamente.')
+            return HttpResponseRedirect('/dashboard')
+    else:
+        form = InmuebleForm()
+    return render(request, './m7_python/add_property.html', {'formulario': form})

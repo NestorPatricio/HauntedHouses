@@ -53,7 +53,7 @@ class Region(models.Model):
 
 # Conversado con el relator Carlos García:
 # Solicito realizar el modelo Profile usando 'AbstractBaseUser' como superclase, para practicar.
-# Soy conciente de que no es la forma más fácil y que deberé de adaptar algunos comandos a cómo lo tienen mis compañeros.
+# Soy consciente de que no es la forma más fácil y que deberé de adaptar algunos comandos a como lo tienen mis compañeros.
 class Profile(AbstractBaseUser, PermissionsMixin):
     rut = models.CharField(max_length=10, unique = True)
     first_name = models.CharField(max_length = 50, null = False, blank = False)
@@ -61,13 +61,12 @@ class Profile(AbstractBaseUser, PermissionsMixin):
     adress = models.CharField(max_length = 100, null = False, blank = False)
     phone_number = models.CharField(max_length = 9, null = False, blank = False)
     email = models.EmailField(max_length = 50, null = False, blank = False, unique = False)
-    picture = models.URLField(default = 'Sin imagen disponible')
+    picture = models.URLField(null = False, blank = True)
     tipo_user = models.ForeignKey(
         'm7_python.TipoUser',
         on_delete = models.CASCADE,
-        null = True, blank = True,
-        related_name = 'profile')
-    is_active = models.BooleanField(default = False)
+        null = True, blank = True)
+    is_active = models.BooleanField(default = True)
     is_staff = models.BooleanField(default = False)
 
     objects = CustomAccountManager()
@@ -91,19 +90,15 @@ class Inmueble(models.Model):
     adress = models.CharField(max_length = 100, null = False, blank = False)
     rent_price = models.FloatField(null = False, blank = False)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
-        related_name = 'inmuebles',
         on_delete = models.CASCADE,
         null = True, blank = True)
     tipo_inmueble = models.ForeignKey('m7_python.TipoInmueble',
-        related_name = 'inmuebles',
         on_delete = models.CASCADE,
         null = True, blank = True)
     comuna = models.ForeignKey('m7_python.Comuna',
-        related_name = 'inmuebles',
         on_delete = models.CASCADE,
         null = True, blank = True)
     region = models.ForeignKey('m7_python.Region',
-        related_name = 'inmuebles',
         on_delete = models.CASCADE,
         null = True, blank = True)
 

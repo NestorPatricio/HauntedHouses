@@ -17,9 +17,27 @@ body {
     color: #A08993;
 }
 
-.btn-haunted:hover {
+.btn-haunted-small {
+    background-color: #1A0E18;
+    font-family: 'Creepster', cursive;
+    color: #A08993;
+}
+
+.btn-haunted:hover, .btn-haunted-small:hover {
     background-color: #1A0E18;
     color: #D2D1CC;
+}
+
+.message {
+    background-color: #D2D1CC;
+    color: #1A0E18;
+    font-family: 'Creepster', cursive;
+    font-weight: 300;
+    border: 1px solid #1A0E18;
+}
+
+h4 {
+    font-family: 'Oswald', sans-serif;
 }
 
 header {
@@ -41,4 +59,8 @@ footer {
 .links {
     text-decoration: none;
     color: #A08993;
+}
+
+.links:hover {
+    color: #D2D1CC;
 }

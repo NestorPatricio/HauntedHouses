@@ -1,7 +1,7 @@
 from django.urls import path
 from django.contrib.auth.views import LoginView, LogoutView
 
-from .views import index, register, complement, users_intro, profile
+from .views import index, register, complement, users_intro, profile, add_property
 
 app_name = 'm7_python'
 
@@ -20,4 +20,6 @@ urlpatterns = [
     path('complement/', complement, name = 'complemento'),
     # example: /update/
     path('update/', profile, name = 'actualizarse'),
+    # example: /add_new/
+    path('add_new/', add_property, name = 'agrégala'),
 ]

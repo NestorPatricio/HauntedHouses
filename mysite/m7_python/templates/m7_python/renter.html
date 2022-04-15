@@ -1,3 +1,24 @@
+
+{% if checker %}
+
+<div class="my-4">
+    {% for property in properties %}
+    <div class="my-4">
+        <a href="#" role="submit" style="text-decoration: none;">
+            <div class="p-2 shadow-lg rounded message">
+                <h3 class="">{{ property.name }}</h3>
+                <h4 class="">{{ property.description }}</h4>
+            </div>
+        </a>
+    </div>
+    
+    {% endfor %}
+</div>
+
+{% else %}
+
 <div class="my-3">
     <h1>Estamos preparando algo especial para ti.</h1>
 </div>
+
+{% endif %}

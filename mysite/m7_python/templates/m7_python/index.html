@@ -1,10 +1,10 @@
 {% extends 'm7_python/base.html' %}
+{% load static %}
 
 {% block main %}
-<main class="container my-3">
-{% if user.is_authenticated %}
-    <h1 class="mx-2">Bienvenido a tu sesión {{ user.first_name }}</h1>
-{% endif %}
-    <h1 class="mx-2">Las casas más <b>embrujadas</b>, los departamentos más <b>creepy</b></h1>
+<main class="container my-3 text-center">
+    <img class="img-fluid rounded" src="{% static './m7_python/img/haunted-house-colorado-ii.jpg' %}" alt="HountedHouses">
+    <h1 class="mt-4">Las casas más <b>embrujadas</b>, los departamentos más <b>creepy</b>...</h1>
+    <h4 class="mb-4">Ven a ver nuestros precios de <b>miedo</b>.</h4>
 </main>
 {% endblock main %}
