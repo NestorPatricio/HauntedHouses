@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 from m7_python.models import Profile, TipoUser, Inmueble, TipoInmueble, Comuna, Region
-from m7_python.forms import UserForm, CompletingUserForm, UserUpdateForm, InmuebleForm
+from m7_python.forms import UserForm, CompletingUserForm, UserUpdateForm, InmuebleForm, InmuebleUpdateForm
 
 def index(request):
     return render(request, './m7_python/index.html', {})
@@ -55,17 +55,17 @@ def complement(request):
     return render(request, './registration/complement.html', {'formulario': form})
 
 @login_required
-def profile(request):
+def profile_update(request):
     if request.method == 'POST':
         form = UserUpdateForm(request.POST, instance = request.user)
         if form.is_valid():
             form.save()
-            messages.success(request, f'Los datos del usuario{form.cleaned_data["first_name"]} han sido actualizados.')
+            messages.success(request, f'Los datos del usuario{form.cleaned_data["first_name"]} han sido actualizados exitosamente.')
             return HttpResponseRedirect('/dashboard')
     else:
         # 'instance=' permite que los campos no estén vacíos al momento de actualizar.
         form = UserUpdateForm(instance = request.user)
-    return render(request, './m7_python/update_profile.html', {'formulario': form})
+    return render(request, './registration/update_profile.html', {'formulario': form})
 
 @login_required
 def add_property(request):
@@ -106,3 +106,23 @@ def add_property(request):
     else:
         form = InmuebleForm()
     return render(request, './m7_python/add_property.html', {'formulario': form})
+
+@login_required
+def property_update(request):
+    property = Inmueble.objects.get(id = request.GET['id'])
+    if request.method == 'POST':
+        form = InmuebleUpdateForm(request.POST, instance = property)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Los datos de su propiedad han sido actualizados exitosamente.')
+            return HttpResponseRedirect('/dashboard')
+    else:
+        form = InmuebleUpdateForm(instance = property)
+    return render(request, './registration/update_property.html', {'formulario': form, 'propiedad': property})
+
+@login_required
+def property_delete(request):
+    property = Inmueble.objects.get(id = request.GET['id'])
+    property.delete()
+    messages.success(request, 'Los datos de su propiedad han sido eliminados.')
+    return HttpResponseRedirect('/dashboard')

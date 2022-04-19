@@ -148,3 +148,41 @@ class InmuebleForm(forms.Form):
     comuna = forms.CharField(
         label = 'Comuna',
         widget = forms.Select(attrs = {'class': 'form-control'}, choices = MUNICIPALITY))
+
+
+class InmuebleUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Inmueble
+        fields= (
+            'name',
+            'description',
+            'builded_sqm',
+            'terrain_sqm',
+            'rooms',
+            'bathrooms',
+            'parkings',
+            'rent_price',
+        )
+        labels = {
+            'name': 'Nombre de la publicación',
+            'description': 'Descripción de la propiedad',
+            'builded_sqm': 'M2 construidos',
+            'terrain_sqm': 'M2 del terreno',
+            'rooms': 'Habitaciones',
+            'bathrooms': 'Baños',
+            'parkings': 'Estacionamientos',
+            'rent_price': 'Precio del arriendo mensual',
+        }
+        widgets = {
+            'name': forms.TextInput(attrs = {'class': 'form-control'}),
+            'description': forms.Textarea(attrs = {
+                'class': 'form-control',
+                'style': 'resize: none;',
+                'rows': '6'}),            
+            'builded_sqm': forms.NumberInput(attrs = {'class': 'form-control'}),
+            'terrain_sqm': forms.NumberInput(attrs = {'class': 'form-control'}),
+            'rooms': forms.NumberInput(attrs = {'class': 'form-control'}),
+            'bathrooms': forms.NumberInput(attrs = {'class': 'form-control'}),
+            'parkings': forms.NumberInput(attrs = {'class': 'form-control'}),
+            'rent_price': forms.NumberInput(attrs = {'class': 'form-control'}),
+        }

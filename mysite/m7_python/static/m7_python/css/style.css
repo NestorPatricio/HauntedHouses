@@ -34,9 +34,15 @@ body {
     font-family: 'Creepster', cursive;
     font-weight: 300;
     border: 1px solid #1A0E18;
+    text-decoration: none;
+    width: 100%;
 }
 
 h4 {
+    font-family: 'Oswald', sans-serif;
+}
+
+.modal-body {
     font-family: 'Oswald', sans-serif;
 }
 

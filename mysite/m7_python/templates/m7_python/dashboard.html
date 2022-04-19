@@ -14,6 +14,7 @@
 
 {% if user.is_authenticated %}
     {% if user.tipo_user_id == 1 %}
+
     <div class="row">
         <div class="col-12 col-md-4 col-lg-3 col-xl-2">
             <img class="img-fluid rounded" src="{{ user.picture }}" alt="{{ user.first_name }}">
@@ -23,10 +24,13 @@
             <h3 class="m-2">Revisa las propiedades que tienes con nosotros.</h3>
         </div>
     </div>
+
     {% block landlord %}
     {% include 'm7_python/landlord.html' %}
     {% endblock landlord %}
+
     {% else %}
+
     <div class="row">
         <div class="col-12 col-md-4 col-lg-3 col-xl-2">
             <img class="img-fluid rounded" src="{{ user.picture }}" alt="{{ user.first_name }}">
@@ -36,9 +40,11 @@
             <h3 class="m-2">Disfruta de nuestras ofertas de miedo.</h3>
         </div>
     </div>
+
     {% block renter %}
     {% include 'm7_python/renter.html' %}
     {% endblock renter %}
+    
     {% endif %}
     
 {% else %}

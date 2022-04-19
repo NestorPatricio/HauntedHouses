@@ -8,8 +8,45 @@
             <h4 class="">{{ property.description }}</h4>
         </div>
         <div class="col-12 col-md-12 mx-auto">
-            <a role="submit" class="btn btn-haunted-small m-2 fs-5" href="#">Editar</a>
-            <a role="submit" class="btn btn-haunted-small m-2 fs-5" href="#">Eliminar</a>
+            <a role="submit" class="btn btn-haunted-small m-2 fs-5" href="/update_prop?id={{ property.id }}">Editar</a>
+            <button class="btn btn-haunted-small m-2 fs-5" type="button" data-bs-target="#property{{ property.id }}" data-bs-toggle="modal">
+                Eliminar
+            </button>
+        </div>
+    </div>
+
+<!-- Modal -->
+    <div class="modal fade" id="property{{ property.id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content message">
+                <div class="text-center m-2 btn-haunted fs-1">
+                VADE RETRO SATANAS
+                    <p class="fs-3 my-2">¿Estás seguro que quieres eliminar esta propiedad?</p>
+                </div>
+                <div class="m-2">
+                    <h5 class="modal-title fs-3 text-center" id="staticBackdropLabel">{{ property.name }}</h5>
+                </div>
+                <div class="modal-body fs-5">
+                    <div class="my-2">
+                        {{ property.description }}
+                    </div>
+                    <div class="my-2">
+                        - {{ property.tipo_inmueble.property_type }} de {{ property.terrain_sqm }} m2, con {{ property.builded_sqm }} m2 construidos. <br>
+                        - Habitaciones: {{ property.rooms }}. <br>
+                        - Baños: {{ property.bathrooms }}. <br> 
+                        - Estacionamientos: {{ property.parkings }}. <br>
+                        - Ubicación: {{ property.adress }}, {{ property.comuna.municipality }}, {{ property.region.region }}.
+                    </div>
+                    <div class="my-2">
+                        - Arrendatario: {{ property.user.first_name }} {{ property.user.last_name }}. <br>
+                        - Arriendo mensual: ${{ property.rent_price }}.
+                    </div>
+                </div>
+                <div class="mb-4 mx-auto">
+                    <a role="submit" class="btn btn-haunted-small mx-2" href="/delete_prop?id={{ property.id }}">Eliminar esta propiedad</a>
+                    <button type="button" class="btn btn-haunted-small mx-2" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
         </div>
     </div>
     

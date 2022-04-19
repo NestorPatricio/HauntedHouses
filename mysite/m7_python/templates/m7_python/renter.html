@@ -4,14 +4,45 @@
 <div class="my-4">
     {% for property in properties %}
     <div class="my-4">
-        <a href="#" role="submit" style="text-decoration: none;">
-            <div class="p-2 shadow-lg rounded message">
+        <div href="#" role="submit">
+            <button class="p-2 shadow-lg rounded message text-start" type="button" data-bs-target="#property{{ property.id }}" data-bs-toggle="modal">
                 <h3 class="">{{ property.name }}</h3>
                 <h4 class="">{{ property.description }}</h4>
-            </div>
-        </a>
+            </button>
+        </div>
     </div>
-    
+
+<!-- Modal -->
+    <div class="modal fade" id="property{{ property.id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content message">
+                <div class="m-2">
+                    <h5 class="modal-title fs-3 text-center" id="staticBackdropLabel">{{ property.name }}</h5>
+                </div>
+                <div class="modal-body fs-5">
+                    <div class="my-2">
+                        {{ property.description }}
+                    </div>
+                    <div class="my-2">
+                        - {{ property.tipo_inmueble.property_type }} de {{ property.terrain_sqm }} m2, con {{ property.builded_sqm }} m2 construidos. <br>
+                        - Habitaciones: {{ property.rooms }}. <br>
+                        - Baños: {{ property.bathrooms }}. <br> 
+                        - Estacionamientos: {{ property.parkings }}. <br>
+                        - Ubicación: {{ property.adress }}, {{ property.comuna.municipality }}, {{ property.region.region }}.
+                    </div>
+                    <div class="my-2">
+                        - Arrendatario: {{ property.user.first_name }} {{ property.user.last_name }}. <br>
+                        - Arriendo mensual: ${{ property.rent_price }}.
+                    </div>
+                </div>
+                <div class="mb-4 mx-auto">
+                    <a role="submit" class="btn btn-haunted-small mx-2" href="#">Solicitar información</a>
+                    <button type="button" class="btn btn-haunted-small mx-2" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     {% endfor %}
 </div>
 
@@ -22,3 +53,4 @@
 </div>
 
 {% endif %}
+

@@ -1,7 +1,7 @@
 from django.urls import path
 from django.contrib.auth.views import LoginView, LogoutView
 
-from .views import index, register, complement, users_intro, profile, add_property
+from .views import index, register, complement, users_intro, profile_update, add_property, property_update, property_delete
 
 app_name = 'm7_python'
 
@@ -19,7 +19,11 @@ urlpatterns = [
     # example: /complement/
     path('complement/', complement, name = 'complemento'),
     # example: /update/
-    path('update/', profile, name = 'actualizarse'),
+    path('update/', profile_update, name = 'actualizarse'),
     # example: /add_new/
     path('add_new/', add_property, name = 'agrégala'),
+    # example: /update_prop/
+    path('update_prop/', property_update, name = 'actualízalo'),
+    # example: /delete_prop/
+    path('delete_prop/', property_delete, name = 'elimínala'),
 ]
